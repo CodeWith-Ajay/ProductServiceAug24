@@ -1,5 +1,6 @@
 package com.example.ProductServiceAug24.controllers;
 
+import com.example.ProductServiceAug24.Exceptions.ProductNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,10 @@ public class SampleController {
 
     //Endpoint name
     @GetMapping("/hello/{name}")
-    public String helloWithName(@PathVariable("name") String name ){
+    public String helloWithName(@PathVariable("name") String name ) throws ProductNotFoundException {
+        if(name.equals("Ajay")){
+            throw new ProductNotFoundException("Ajay is not a product");
+        }
         return "Hello " + name;
     }
     @GetMapping("/show/{showId}/seat/{seatId}")
