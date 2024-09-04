@@ -3,11 +3,15 @@ package com.example.ProductServiceAug24.services;
 import com.example.ProductServiceAug24.Exceptions.ProductNotFoundException;
 import com.example.ProductServiceAug24.dtos.FakeStoreProductDto;
 import com.example.ProductServiceAug24.models.Product;
+import com.example.ProductServiceAug24.respositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Service
+@Service("fakestore")
 public class FakeStoreProductService implements ProductService{
+
+
     @Override
     public Product getProductById(long id) throws ProductNotFoundException {
 
@@ -19,6 +23,14 @@ public class FakeStoreProductService implements ProductService{
 
         return covertFakeStoreProductToProduct(fakeStoreProductDto);
     }
+
+    @Override
+    public Product createProduct(String name, String category, String description) {
+
+
+        return null;
+    }
+
     private Product covertFakeStoreProductToProduct(FakeStoreProductDto dto) {
         Product product = new Product();
         product.setCategory(dto.getCategory());
