@@ -37,5 +37,5 @@ public class ProductController {
         System.out.println(requestDto);
         return productService.createProduct(requestDto.getName(), requestDto.getCategory(), requestDto.getDescription());
     }
-    public
+
 }
