@@ -1,4 +1,4 @@
-package com.example.ProductServiceAug24.cardinalities.OnetoOne;
+package com.example.ProductServiceAug24.cardinalities.OnetoOne.OnetoOne;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
