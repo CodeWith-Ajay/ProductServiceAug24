@@ -3,10 +3,11 @@ package com.example.ProductServiceAug24.services;
 import com.example.ProductServiceAug24.Exceptions.ProductNotFoundException;
 import com.example.ProductServiceAug24.dtos.FakeStoreProductDto;
 import com.example.ProductServiceAug24.models.Product;
-import com.example.ProductServiceAug24.respositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Service("fakestore")
 public class FakeStoreProductService implements ProductService{
@@ -27,6 +28,12 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public Product createProduct(String name, String category, String description) {
 
+
+        return null;
+    }
+
+    @Override
+    public Page<Product> getAllProducts(int pageSize, int pageNum) {
 
         return null;
     }

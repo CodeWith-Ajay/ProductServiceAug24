@@ -1,15 +1,17 @@
 package com.example.ProductServiceAug24.services;
 
 import com.example.ProductServiceAug24.Exceptions.ProductNotFoundException;
-import com.example.ProductServiceAug24.dtos.FakeStoreProductDto;
+import com.example.ProductServiceAug24.Projections.ProductInfo;
 import com.example.ProductServiceAug24.dtos.createProductRequestDto;
 import com.example.ProductServiceAug24.models.Product;
 import com.example.ProductServiceAug24.respositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("dbImpl")
@@ -20,6 +22,13 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product getProductById(long id) throws ProductNotFoundException {
+        ProductInfo productInfo = productRepository.getProductInfo(id);
+        System.out.println(productInfo.getId());
+        System.out.println(productInfo.getName());
+        System.out.println(productInfo.getDescp());
+
+
+
         Optional<Product>OptionalProduct = productRepository.findById(id);
         if(OptionalProduct.isPresent()){
             return  OptionalProduct.get();
@@ -55,5 +64,11 @@ public class ProductServiceImpl implements ProductService{
         product.setDescription(description);
         product = productRepository.save(product);
         return product;
+    }
+
+    @Override
+    public Page<Product> getAllProducts(int pageSize, int pageNum) {
+        return productRepository.findAll(PageRequest.of(pageNum, pageSize, Sort.by("name").descending().and
+                (Sort.by("category"))));
     }
 }
