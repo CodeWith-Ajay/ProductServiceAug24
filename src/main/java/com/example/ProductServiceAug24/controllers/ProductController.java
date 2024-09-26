@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
-    @Qualifier("dbImpl")
+    @Qualifier("fakestore")
     private ProductService productService;
 
     @GetMapping("/{id}")
@@ -29,7 +29,7 @@ public class ProductController {
 //        return new ResponseEntity<>(HttpStatusCode.valueOf(400));
 //    }
     Product product= productService.getProductById(productId);
-    return new ResponseEntity<>(product, HttpStatusCode.valueOf(200));
+    return ResponseEntity.ok(product);
     }
 
     @PostMapping()
